@@ -59,6 +59,7 @@ def create_author():
         db.session.commit()
 
         flash('New author created successfully.')
+        print('New author created successfully.')
         return redirect(url_for('main.homepage'))
     
     # if form was not valid, or was not submitted yet
