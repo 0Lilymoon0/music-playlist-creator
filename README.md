@@ -1,4 +1,4 @@
-# Books App Part 4 (Tests)
+# Final Project
 
 ## Setup
 
