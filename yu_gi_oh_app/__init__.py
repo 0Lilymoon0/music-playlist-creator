@@ -2,7 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
-from books_app.config import Config
+from yu_gi_oh_app.config import Config
 import os
 
 app = Flask(__name__)
@@ -33,10 +33,10 @@ bcrypt = Bcrypt(app)
 # Blueprints
 ###########################
 
-from books_app.main.routes import main as main_routes
+from yu_gi_oh_app.main.routes import main as main_routes
 app.register_blueprint(main_routes)
 
-from books_app.auth.routes import auth as auth_routes
+from yu_gi_oh_app.auth.routes import auth as auth_routes
 app.register_blueprint(auth_routes)
 
 with app.app_context():

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Decks</h2>
+
+<ul>
+{% for deck in all_decks %}
+    <li><a href="/deck/{{ deck.id }}">{{ deck.name }}</a></li>
+{% endfor %}
+</ul>
+
+<h2>Cards</h2>
+
+<ul>
+{% for card in all_cards %}
+    <li><a href="/card/{{ card.id }}">{{ card.name }}</a></li>
+{% endfor %}
+</ul>
+
+{% endblock %}

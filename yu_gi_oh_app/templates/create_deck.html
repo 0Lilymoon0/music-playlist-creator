@@ -2,12 +2,10 @@
 
 {% block content %}
 
-<p>Genre creation form.</p>
-
-<form method="POST" action="{{ url_for('main.create_genre') }}">
+<form method="POST" action="{{ url_for('main.create_deck') }}">
     {{ form.csrf_token }}
     <fieldset>
-        <legend>Enter a genre</legend>
+        <legend>Create a Deck</legend>
 
         {{ form.name.label }}
         {{ form.name }}
@@ -16,8 +14,8 @@
             <li class="error">{{ error }}</li>
         {% endfor %}
         </ul>
-        
-        {{ form.submit }}
+            
+        {{ form.submit_button }}
     </fieldset>
 </form>
 

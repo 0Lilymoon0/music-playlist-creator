@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{ deck.name }}</h1>
+
+<h2>Created By: {{ deck.created_by.username }}</h2>
+
+<p>Cards:</p>
+<div class="cards">
+    {% for card in deck.cards_in_deck %}
+    <div class="card-details">
+        <a href="/card/{{ card.id }}"><img src="{{ card.photo_url }}" width="300px" height="500px">
+    </div>
+    {% endfor %}
+</div>
+
+
+<form method="POST" action="{{ url_for('main.deck_detail', deck_id=deck.id) }}">
+    {{ form.csrf_token }}
+    <fieldset>
+        <legend>Edit this deck</legend>
+
+        {{ form.name.label }}
+        {{ form.name }}
+            
+        {{ form.submit_button }}
+    </fieldset>
+</form>
+
+{% endblock %}

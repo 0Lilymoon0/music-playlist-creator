@@ -1,12 +1,11 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Length, ValidationError
-from books_app.models import User
-from books_app import bcrypt
+from yu_gi_oh_app.models import User
+from yu_gi_oh_app import bcrypt
 
 class SignUpForm(FlaskForm):
-    username = StringField('User Name',
-        validators=[DataRequired(), Length(min=3, max=50)])
+    username = StringField('User Name', validators=[DataRequired(), Length(min=3, max=50)])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Sign Up')
 
@@ -17,8 +16,7 @@ class SignUpForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    username = StringField('User Name',
-        validators=[DataRequired(), Length(min=3, max=50)])
+    username = StringField('User Name', validators=[DataRequired(), Length(min=3, max=50)])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Log In')
 

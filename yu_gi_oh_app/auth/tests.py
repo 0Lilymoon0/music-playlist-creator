@@ -3,31 +3,12 @@ from unittest import TestCase
 
 from datetime import date
  
-from books_app import app, db, bcrypt
-from books_app.models import Book, Author, User, Audience, Genre
-
-"""
-Run these tests with the command:
-python -m unittest books_app.main.tests
-"""
+from yu_gi_oh_app import app, db, bcrypt
+from yu_gi_oh_app.models import User, Card, Deck
 
 #################################################
 # Setup
 #################################################
-
-def create_books():
-    a1 = Author(name='Harper Lee')
-    b1 = Book(
-        title='To Kill a Mockingbird',
-        publish_date=date(1960, 7, 11),
-        author=a1
-    )
-    db.session.add(b1)
-
-    a2 = Author(name='Sylvia Plath')
-    b2 = Book(title='The Bell Jar', author=a2)
-    db.session.add(b2)
-    db.session.commit()
 
 def create_user():
     password_hash = bcrypt.generate_password_hash('password').decode('utf-8')
@@ -53,9 +34,6 @@ class AuthTests(TestCase):
         db.create_all()
 
     def test_signup(self):
-        # TODO: Write a test for the signup route. It should:
-        # - Make a POST request to /signup, sending a username & password
-        # - Check that the user now exists in the database
         post_data = {
             'username': 'me1',
             'password': 'password'
@@ -67,10 +45,6 @@ class AuthTests(TestCase):
         self.assertEqual(created_user.username, 'me1')
 
     def test_signup_existing_user(self):
-        # TODO: Write a test for the signup route. It should:
-        # - Create a user
-        # - Make a POST request to /signup, sending the same username & password
-        # - Check that the form is displayed again with an error message
         create_user()
         
         post_data = {
@@ -83,10 +57,6 @@ class AuthTests(TestCase):
         self.assertIn('That username is taken. Please choose a different one.', response_text)
 
     def test_login_correct_password(self):
-        # TODO: Write a test for the login route. It should:
-        # - Create a user
-        # - Make a POST request to /login, sending the created username & password
-        # - Check that the "login" button is not displayed on the homepage
         create_user()
 
         post_data = {
@@ -99,10 +69,6 @@ class AuthTests(TestCase):
         self.assertNotIn('login', response_text)
 
     def test_login_nonexistent_user(self):
-        # TODO: Write a test for the login route. It should:
-        # - Make a POST request to /login, sending a username & password
-        # - Check that the login form is displayed again, with an appropriate
-        #   error message
         post_data = {
             'username': 'me1',
             'password': 'password'
@@ -113,12 +79,6 @@ class AuthTests(TestCase):
         self.assertIn('No user with that username. Please try again.', response_text)
 
     def test_login_incorrect_password(self):
-        # TODO: Write a test for the login route. It should:
-        # - Create a user
-        # - Make a POST request to /login, sending the created username &
-        #   an incorrect password
-        # - Check that the login form is displayed again, with an appropriate
-        #   error message
         create_user()
 
         post_data = {
@@ -131,11 +91,6 @@ class AuthTests(TestCase):
         self.assertIn("Password does not match. Please try again.", response_text)
 
     def test_logout(self):
-        # TODO: Write a test for the logout route. It should:
-        # - Create a user
-        # - Log the user in (make a POST request to /login)
-        # - Make a GET request to /logout
-        # - Check that the "login" button appears on the homepage
         create_user()
 
         post_data = {

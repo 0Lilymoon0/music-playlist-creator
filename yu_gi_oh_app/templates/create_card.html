@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<p>Card creation form.</p>
+
+<form method="POST" action="{{ url_for('main.create_card') }}">
+    {{ form.csrf_token }}
+    <fieldset>
+        <legend>Create a card</legend>
+
+        {{ form.name.label }}
+        {{ form.name }}
+        <ul>
+        {% for error in form.name.errors %}
+            <li class="error">{{ error }}</li>
+        {% endfor %}
+        </ul>
+
+        {{ form.card_type.label }}
+        {{ form.card_type }}
+        <ul>
+        {% for error in form.card_type.errors %}
+            <li class="error">{{ error }}</li>
+        {% endfor %}
+        </ul>
+
+        {{ form.photo_url.label }}
+        {{ form.photo_url }}
+        <ul>
+        {% for error in form.photo_url.errors %}
+            <li class="error">{{ error }}</li>
+        {% endfor %}
+        </ul>
+
+        {{ form.deck.label }}
+        {{ form.deck }}
+        <ul>
+        {% for error in form.deck.errors %}
+            <li class="error">{{ error }}</li>
+        {% endfor %}
+        </ul>
+            
+        {{ form.submit_button }}
+    </fieldset>
+</form>
+
+
+{% endblock %}

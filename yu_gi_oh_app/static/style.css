@@ -50,3 +50,18 @@ input[type=submit] {
 li.error {
     color: red;
 }
+
+div.cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+div.card-details {
+    border: 1px solid black;
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
+    width: 250px;
+    height: 300px;
+}

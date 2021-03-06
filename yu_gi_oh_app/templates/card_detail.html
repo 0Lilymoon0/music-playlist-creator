@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>{{ card.name }}</h1>
+
+<p><strong>Type</strong> {{ card.card_type }}</p>
+
+<p><strong>Created by:</strong> {{ card.created_by.username }}</p>
+
+<p><img src="{{ card.photo_url }}" width="300px" height="500px"></p>
+
+<h2>Edit Item</h2>
+
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <fieldset>
+        
+        <legend>Please enter your information:</legend>
+
+        {{ form.name.label }}
+        {{ form.name }}
+
+        {{ form.card_type.label }}
+        {{ form.card_type }}
+
+        {{ form.photo_url.label }}
+        {{ form.photo_url }}
+
+        {{ form.deck.label }}
+        {{ form.deck }}
+
+        {{ form.submit_button }}
+
+    </fieldset>
+</form>
+
+{% endblock %}
