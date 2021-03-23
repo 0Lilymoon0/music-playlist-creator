@@ -6,15 +6,27 @@
 
 <h2>Created By: {{ deck.created_by.username }}</h2>
 
-<p>Cards:</p>
+<p>Main Deck:</p>
 <div class="cards">
     {% for card in deck.cards_in_deck %}
-    <div class="card-details">
-        <a href="/card/{{ card.id }}"><img src="{{ card.photo_url }}" width="300px" height="500px">
-    </div>
+        {% if card.card_type.name != "RITUAL_FUSION_SYNCHRO_XYZ_MONSTER" %}
+            <div class="card-details">
+                <a href="/card/{{ card.id }}"><img src="{{ card.photo_url }}" width="200px" height="300px">
+            </div>
+        {% endif %}
     {% endfor %}
 </div>
 
+<p>Extra Deck:</p>
+<div class="cards">
+    {% for card in deck.cards_in_deck %}
+        {% if card.card_type.name == "RITUAL_FUSION_SYNCHRO_XYZ_MONSTER" %}
+            <div class="card-details">
+                <a href="/card/{{ card.id }}"><img src="{{ card.photo_url }}" width="200px" height="300px">
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
 
 <form method="POST" action="{{ url_for('main.deck_detail', deck_id=deck.id) }}">
     {{ form.csrf_token }}

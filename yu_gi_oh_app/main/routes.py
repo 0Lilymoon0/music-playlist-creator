@@ -2,7 +2,7 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash
 from flask_login import login_user, logout_user, login_required, current_user
 from yu_gi_oh_app.models import User, Card, Deck
-from yu_gi_oh_app.main.forms import CardForm, DeckForm
+from yu_gi_oh_app.main.forms import CardForm, DeckForm, EditCardForm, EditDeckForm
 from yu_gi_oh_app import bcrypt
 from yu_gi_oh_app import app, db
 
@@ -48,7 +48,7 @@ def create_card():
             name=form.name.data,
             card_type=form.card_type.data,
             photo_url=form.photo_url.data,
-            deck=form.deck.data,
+            decks=form.decks.data,
             created_by=current_user
         )
         db.session.add(new_card)
@@ -63,18 +63,15 @@ def create_card():
 def deck_detail(deck_id):
     deck = Deck.query.get(deck_id)
     # Create a DeckForm and pass in `obj=store`
-    form = DeckForm(obj=deck)
+    form = EditDeckForm(obj=deck)
 
     # If form was submitted and was valid:
-    if form.validate_on_submit(): 
-        new_deck = Deck(
-            name=form.name.data,
-        )
-        db.session.add(new_deck)
+    if form.validate_on_submit():  
+        deck.name = form.name.data,
         db.session.commit()
 
-        flash('New deck was created successfully.')
-        return redirect(url_for('main.deck_detail', deck_id=new_deck.id))
+        flash('Deck was updated successfully.')
+        return redirect(url_for('main.deck_detail', deck_id=deck.id))
 
     deck = Deck.query.get(deck_id)
     return render_template('deck_detail.html', deck=deck, form=form)
@@ -84,21 +81,19 @@ def deck_detail(deck_id):
 def card_detail(card_id):
     card = Card.query.get(card_id)
     # Create a CardForm and pass in `obj=item`
-    form = CardForm(obj=card)
+    form = EditCardForm(obj=card)
     
     # If form was submitted and was valid:
     if form.validate_on_submit(): 
-        new_card = Card(
-            name=form.name.data,
-            card_type=form.card_type.data,
-            photo_url=form.photo_url.data,
-            deck=form.deck.data
-        )
-        db.session.add(new_card)
+        card.name = form.name.data
+        card.card_type = form.card_type.data
+        card.photo_url = form.photo_url.data
+        card.decks = form.decks.data
+        card.created_by = current_user
         db.session.commit()
 
-        flash('New card was created successfully.')
-        return redirect(url_for('main.card_detail', card_id=new_card.id))
+        flash('Card was updated successfully.')
+        return redirect(url_for('main.card_detail', card_id=card.id))
 
     card = Card.query.get(card_id)
     return render_template('card_detail.html', card=card, form=form)

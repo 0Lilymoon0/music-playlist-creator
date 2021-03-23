@@ -19,15 +19,35 @@
 
         {{ form.name.label }}
         {{ form.name }}
+        <ul>
+            {% for error in form.name.errors %}
+                <li class="error">{{ error }}</li>
+            {% endfor %}
+        </ul>
 
         {{ form.card_type.label }}
         {{ form.card_type }}
+        <ul>
+            {% for error in form.card_type.errors %}
+                <li class="error">{{ error }}</li>
+            {% endfor %}
+        </ul>
 
         {{ form.photo_url.label }}
         {{ form.photo_url }}
+        <ul>
+            {% for error in form.photo_url.errors %}
+                <li class="error">{{ error }}</li>
+            {% endfor %}
+        </ul>
 
-        {{ form.deck.label }}
-        {{ form.deck }}
+        {{ form.decks.label }}
+        {{ form.decks }}
+        <ul>
+            {% for error in form.decks.errors %}
+                <li class="error">{{ error }}</li>
+            {% endfor %}
+        </ul>
 
         {{ form.submit_button }}
 

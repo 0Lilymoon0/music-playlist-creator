@@ -33,10 +33,10 @@
         {% endfor %}
         </ul>
 
-        {{ form.deck.label }}
-        {{ form.deck }}
+        {{ form.decks.label }}
+        {{ form.decks }}
         <ul>
-        {% for error in form.deck.errors %}
+        {% for error in form.decks.errors %}
             <li class="error">{{ error }}</li>
         {% endfor %}
         </ul>
