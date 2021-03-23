@@ -4,4 +4,4 @@ All you really need to do to use this is run it with VScode and search localhost
 
 Once running, you will need to sign/login to use the create card or create deck route.
 
-I reccommend first creating a deck before creating any cards, but the forms tell someone any other neccessary information.
+I recommend first creating a deck before creating any cards, but the forms tell someone any other necessary information.
