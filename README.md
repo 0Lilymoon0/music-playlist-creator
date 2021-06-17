@@ -9,4 +9,4 @@ Once running, you will need to sign/login to use the create card or create deck 
 I recommend first creating a deck before creating any cards, but the forms tell someone any other necessary information.
 
 # Technologies
-Python
+Python, HTML
