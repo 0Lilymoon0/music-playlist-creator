@@ -3,8 +3,8 @@ from unittest import TestCase
 
 from datetime import date
  
-from yu_gi_oh_app import app, db, bcrypt
-from yu_gi_oh_app.models import User, Card, Deck
+from playlist_app import app, db, bcrypt
+from playlist_app.models import User, Card, Deck
 
 #################################################
 # Setup

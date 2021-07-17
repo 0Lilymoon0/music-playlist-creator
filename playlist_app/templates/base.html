@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Yu-Gi-Oh Deck Builder</title>
+        <title>Music Playlist Creator</title>
         <link rel="stylesheet" href="/static/style.css">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
@@ -12,8 +12,8 @@
                 <a href="/">Home</a>
                 <div>
                     {% if current_user.is_authenticated %}
-                    <a href="/create_deck">Create Deck</a>
-                    <a href="/create_card">Create Card</a>
+                    <a href="/create_playlist">Create Playlist</a>
+                    <a href="/create_song">Create Song</a>
                     <a href="/logout">Log Out</a>
                     {% else %}
                     <a href="/signup">Sign Up</a>

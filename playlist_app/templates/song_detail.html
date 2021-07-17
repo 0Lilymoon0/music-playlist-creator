@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>{{ song.name }}</h1>
+
+<p><strong>Created by:</strong> {{ song.created_by.username }}</p>
+
+<h2>Edit Song</h2>
+
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <fieldset>
+        
+        <legend>Please enter your information:</legend>
+
+        {{ form.name.label }}
+        {{ form.name }}
+        <ul>
+            {% for error in form.name.errors %}
+                <li class="error">{{ error }}</li>
+            {% endfor %}
+        </ul>
+
+        {{ form.playlists.label }}
+        {{ form.playlists }}
+        <ul>
+            {% for error in form.playlists.errors %}
+                <li class="error">{{ error }}</li>
+            {% endfor %}
+        </ul>
+
+        {{ form.submit_button }}
+
+    </fieldset>
+</form>
+
+{% endblock %}

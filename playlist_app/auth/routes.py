@@ -1,12 +1,12 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash
 from flask_login import login_user, logout_user, login_required, current_user
 
-from yu_gi_oh_app.models import User, Card, Deck
-from yu_gi_oh_app.auth.forms import SignUpForm, LoginForm
-from yu_gi_oh_app import bcrypt
+from playlist_app.models import User, Card, Deck
+from playlist_app.auth.forms import SignUpForm, LoginForm
+from playlist_app import bcrypt
 
 # Import app and db from events_app package so that we can run app
-from yu_gi_oh_app import app, db
+from playlist_app import app, db
 
 auth = Blueprint("auth", __name__)
 

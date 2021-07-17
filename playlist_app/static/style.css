@@ -51,13 +51,13 @@ li.error {
     color: red;
 }
 
-div.cards {
+div.songs {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-div.card-details {
+div.song-details {
     border: 1px solid black;
     margin: 5px;
     padding: 5px;

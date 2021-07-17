@@ -1,6 +1,6 @@
 """Create database models to represent tables."""
 from sqlalchemy_utils import URLType
-from yu_gi_oh_app import db
+from playlist_app import db
 from sqlalchemy.orm import backref
 from flask_login import UserMixin
 import enum
@@ -14,12 +14,6 @@ class FormEnum(enum.Enum):
     def __str__(self):
         return str(self.value)
 
-class CardType(FormEnum):
-    NORMAL_EFFECT_MONSTER = 'Normal/Effect Monster'
-    SPELL = 'Spell'
-    TRAP = 'Trap'
-    RITUAL_FUSION_SYNCHRO_XYZ_MONSTER = 'Ritual/Fusion/Synchro/XYZ Monster'
-
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), nullable=False, unique=True)
@@ -28,23 +22,22 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return f'<User: {self.username}>'
 
-class Card(db.Model):
+class Song(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(40), nullable=False)
-    card_type = db.Column(db.Enum(CardType), default=CardType.NORMAL_EFFECT_MONSTER)
     photo_url = db.Column(URLType)
-    decks = db.relationship('Deck', secondary='card_table', back_populates='cards_in_deck')
+    playlists = db.relationship('Playlist', secondary='card_table', back_populates='songs_in_playlist')
     created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     created_by = db.relationship('User')
 
-class Deck(db.Model):
+class Playlist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(40), nullable=False)
-    cards_in_deck = db.relationship('Card', secondary='card_table', back_populates='decks')
+    songs_in_playlist = db.relationship('Song', secondary='card_table', back_populates='playlists')
     created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     created_by = db.relationship('User')
 
-card_deck_table = db.Table('card_table',
-    db.Column('card_id', db.Integer, db.ForeignKey('card.id')),
-    db.Column('deck_id', db.Integer, db.ForeignKey('deck.id'))
+song_playlist_table = db.Table('song_table',
+    db.Column('song_id', db.Integer, db.ForeignKey('song.id')),
+    db.Column('playlist_id', db.Integer, db.ForeignKey('playlist.id'))
 )
